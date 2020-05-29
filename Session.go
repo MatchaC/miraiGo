@@ -89,6 +89,7 @@ func (this *session) Verify(botqq uint) error  {
 	return err
 }
 
+//释放这个Session
 func (this *session) Release() error{
 	if this.botqq==0{
 		return errors.New("会话未与bot绑定")
