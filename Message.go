@@ -1,19 +1,19 @@
 package miraiGo
 
-type Group struct {
-	Id uint `json:"id"` //消息来源群号
-	Name string `json:"name"` //消息来源群名
-	Permisson string `json:"permisson"` //bot在群中的角色
-}
-
-type Sender struct {
-	Id uint `json:"id"` //发送者QQ号
-	NickName string `json:"memberName"` //(FriendMessage)发送者昵称
-	Remark string `json:"remark"` //(FriendMessage)发送者备注
-	MemberName string `json:"memberName"` //(GroupMessage)发送者群昵称
-	Permission string `json:"permission"` //(GroupMessage)发送者在群中的角色
-	Group Group `json:"group"` //(GroupMessage)消息来源群信息
-}
+const (
+	MsgType_Source     = "Source"
+	MsgType_Quote      = "Quote"
+	MsgType_At         = "At"
+	MsgType_AtAll      = "AtAll"
+	MsgType_Face       = "Face"
+	MsgType_Plain      = "Plain"
+	MsgType_Image      = "Image"
+	MsgType_FlashImage = "FlashImage"
+	MsgType_Xml        = "Xml"
+	MsgType_Json       = "Json"
+	MsgType_App        = "App"
+	MsgType_Poke       = "Poke"
+)
 
 type Message struct {
 	Type string `json:"type"`
@@ -34,4 +34,19 @@ type Message struct {
 	Xml string `json:"xml"` //(Xml) xml消息本体
 	Json string `json:"json"` //(Json) json消息本体
 	Content string `json:"content"` //(App) 不知道干嘛的，mirai也没有说明，估计是小程序连接？
+}
+
+type Group struct {
+	Id uint `json:"id"` //消息来源群号
+	Name string `json:"name"` //消息来源群名
+	Permisson string `json:"permisson"` //bot在群中的角色
+}
+
+type Sender struct {
+	Id uint `json:"id"` //发送者QQ号
+	NickName string `json:"memberName"` //(FriendMessage)发送者昵称
+	Remark string `json:"remark"` //(FriendMessage)发送者备注
+	MemberName string `json:"memberName"` //(GroupMessage)发送者群昵称
+	Permission string `json:"permission"` //(GroupMessage)发送者在群中的角色
+	Group Group `json:"group"` //(GroupMessage)消息来源群信息
 }

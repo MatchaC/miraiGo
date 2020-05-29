@@ -6,7 +6,7 @@ type AuthReq struct {
 }
 
 //校验(或释放)请求
-type VerifyReq struct {
+type SessionReq struct {
 	SessionKey string `json:"sessionKey"`
 	BotQQ uint `json:"qq"`
 }

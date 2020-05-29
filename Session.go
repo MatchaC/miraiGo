@@ -55,7 +55,7 @@ func NewSession(miraiAddr string,authKey string) (*session,error)  {
 
 //校验并激活此会话，并与指定bot绑定
 func (this *session) Verify(botqq uint) error  {
-	req:=VerifyReq{
+	req:=SessionReq{
 		SessionKey: this.sessionKey,
 		BotQQ:      botqq,
 	}
@@ -94,7 +94,7 @@ func (this *session) Release() error{
 	if this.botqq==0{
 		return errors.New("会话未与bot绑定")
 	}
-	req:=VerifyReq{
+	req:=SessionReq{
 		SessionKey: this.sessionKey,
 		BotQQ:      this.botqq,
 	}
