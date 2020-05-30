@@ -9,7 +9,7 @@ import (
 )
 
 //发送好友消息
-func (this *session) SendFriendMessage(req RequestSendFriendMessage) error{
+func (this *Session) SendFriendMessage(req RequestSendFriendMessage) error{
 	if this.qq==0{
 		return errors.New("会话未与bot绑定")
 	}
@@ -42,7 +42,7 @@ func (this *session) SendFriendMessage(req RequestSendFriendMessage) error{
 }
 
 //发送临时消息
-func (this *session) SendTempMessage(req RequestSendTempMessage) error{
+func (this *Session) SendTempMessage(req RequestSendTempMessage) error{
 	if this.qq==0{
 		return errors.New("会话未与bot绑定")
 	}
@@ -75,7 +75,7 @@ func (this *session) SendTempMessage(req RequestSendTempMessage) error{
 }
 
 //发送群消息
-func (this *session) SendGroupMessage(req RequestSendGroupMessage) error{
+func (this *Session) SendGroupMessage(req RequestSendGroupMessage) error{
 	if this.qq==0{
 		return errors.New("会话未与bot绑定")
 	}
@@ -108,7 +108,7 @@ func (this *session) SendGroupMessage(req RequestSendGroupMessage) error{
 }
 
 //发送图片消息(通过URL)
-func (this *session) SendImageMessage(req RequestSendImageMessage) ([]string,error){
+func (this *Session) SendImageMessage(req RequestSendImageMessage) ([]string,error){
 	if this.qq==0{
 		return nil,errors.New("会话未与bot绑定")
 	}
@@ -143,7 +143,7 @@ func (this *session) SendImageMessage(req RequestSendImageMessage) ([]string,err
 
 
 //发送群消息
-func (this *session) ReCall(req RequestReCall) error{
+func (this *Session) ReCall(req RequestReCall) error{
 	if this.qq==0{
 		return errors.New("会话未与bot绑定")
 	}

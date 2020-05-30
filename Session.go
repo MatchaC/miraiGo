@@ -8,18 +8,18 @@ import (
 	"net/http"
 )
 
-type session struct {
+type Session struct {
 	miraiAddr string
 	sessionKey string
 	qq uint
 }
 
-func (this *session) GetBindQQ() uint {
+func (this *Session) GetBindQQ() uint {
 	return this.qq
 }
 
 //验证你的身份，并创建一个新的会话
-func NewSession(miraiAddr string,authKey string) (*session,error)  {
+func NewSession(miraiAddr string,authKey string) (*Session,error)  {
 	req:=AuthReq{AuthKey: authKey}
 	data, err := jsoniter.Marshal(&req)
 	if err!=nil{
@@ -45,7 +45,7 @@ func NewSession(miraiAddr string,authKey string) (*session,error)  {
 
 	switch authResp.Code {
 	case 0:
-		return &session{
+		return &Session{
 			miraiAddr:  miraiAddr,
 			sessionKey: authResp.SessionKey,
 		},nil
@@ -55,7 +55,7 @@ func NewSession(miraiAddr string,authKey string) (*session,error)  {
 }
 
 //校验并激活此会话，并与指定bot绑定
-func (this *session) Verify(botqq uint) error  {
+func (this *Session) Verify(botqq uint) error  {
 	req:=SessionReq{
 		SessionKey: this.sessionKey,
 		BotQQ:      botqq,
@@ -91,7 +91,7 @@ func (this *session) Verify(botqq uint) error  {
 }
 
 //释放这个Session
-func (this *session) Release() error{
+func (this *Session) Release() error{
 	if this.qq==0{
 		return errors.New("会话未与bot绑定")
 	}
