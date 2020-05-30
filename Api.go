@@ -3,6 +3,7 @@ package miraiGo
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"github.com/json-iterator/go"
 	"io/ioutil"
 	"net/http"
@@ -37,6 +38,7 @@ func (this *Session) SendFriendMessage(req RequestSendFriendMessage) error{
 		return err
 	}
 
+	fmt.Println("msg:",uniResp.Msg)
 	err = GetErrByCode(uniResp.Code)
 	return err
 }
@@ -70,6 +72,7 @@ func (this *Session) SendTempMessage(req RequestSendTempMessage) error{
 		return err
 	}
 
+	fmt.Println("msg:",uniResp.Msg)
 	err = GetErrByCode(uniResp.Code)
 	return err
 }
@@ -103,6 +106,7 @@ func (this *Session) SendGroupMessage(req RequestSendGroupMessage) error{
 		return err
 	}
 
+	fmt.Println("msg:",uniResp.Msg)
 	err = GetErrByCode(uniResp.Code)
 	return err
 }
@@ -142,7 +146,7 @@ func (this *Session) SendImageMessage(req RequestSendImageMessage) ([]string,err
 //上传图片到服务器，暂无
 
 
-//发送群消息
+//撤回消息
 func (this *Session) ReCall(req RequestReCall) error{
 	if this.qq==0{
 		return errors.New("会话未与bot绑定")
