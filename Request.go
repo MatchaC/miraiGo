@@ -29,3 +29,16 @@ type RequestSendGroupMessage struct {
 	Target uint `json:"target"`
 	MessageChain []Message `json:"messageChain"`
 }
+
+type RequestSendImageMessage struct {
+	SessionKey string `json:"sessionKey"`
+	Target uint `json:"target,omitempty"`
+	QQ uint `json:"qq,omitempty"`
+	Group uint `json:"group,omitempty"`
+	MessageChain []Message `json:"messageChain"`
+}
+
+type RequestReCall struct {
+	SessionKey string `json:"sessionKey"`
+	Target uint `json:"target"`
+}
