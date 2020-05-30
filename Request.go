@@ -15,6 +15,7 @@ type RequestSendFriendMessage struct {
 	SessionKey string `json:"sessionKey"`
 	Target uint `json:"target"`
 	MessageChain []Message `json:"messageChain"`
+	Quote uint `json:"quote,omitempty"`
 }
 
 type RequestSendTempMessage struct {
@@ -22,12 +23,14 @@ type RequestSendTempMessage struct {
 	QQ uint `json:"qq"`
 	Group uint `json:"group"`
 	MessageChain []Message `json:"messageChain"`
+	Quote uint `json:"quote,omitempty"`
 }
 
 type RequestSendGroupMessage struct {
 	SessionKey string `json:"sessionKey"`
 	Target uint `json:"target"`
 	MessageChain []Message `json:"messageChain"`
+	Quote uint `json:"quote,omitempty"`
 }
 
 type RequestSendImageMessage struct {
