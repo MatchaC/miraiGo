@@ -12,6 +12,7 @@ type AuthResp struct {
 type UniResp struct {
 	Code uint `json:"code"`
 	Msg string `json:"msg"`
+	MessageId uint `json:"messageId,omitempty"`
 }
 
 func GetErrByCode(code uint) error {

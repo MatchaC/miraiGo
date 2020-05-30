@@ -9,10 +9,13 @@ import (
 )
 
 type session struct {
-	client *http.Client
 	miraiAddr string
 	sessionKey string
-	botqq uint
+	qq uint
+}
+
+func (this *session) GetBindQQ() uint {
+	return this.qq
 }
 
 //验证你的身份，并创建一个新的会话
@@ -23,8 +26,7 @@ func NewSession(miraiAddr string,authKey string) (*session,error)  {
 		return nil,err
 	}
 
-	client:=&http.Client{}
-	resp, err := client.Post("http://"+miraiAddr+"/auth", "application/json; charset=utf-8", bytes.NewBuffer(data))
+	resp, err := http.DefaultClient.Post("http://"+miraiAddr+"/auth", "application/json; charset=utf-8", bytes.NewBuffer(data))
 	if err!=nil{
 		return nil,err
 	}
@@ -44,7 +46,6 @@ func NewSession(miraiAddr string,authKey string) (*session,error)  {
 	switch authResp.Code {
 	case 0:
 		return &session{
-			client:     client,
 			miraiAddr:  miraiAddr,
 			sessionKey: authResp.SessionKey,
 		},nil
@@ -65,7 +66,7 @@ func (this *session) Verify(botqq uint) error  {
 		return err
 	}
 
-	resp, err := this.client.Post("http://"+this.miraiAddr+"/verify", "application/json; charset=utf-8", bytes.NewReader(data))
+	resp, err := http.DefaultClient.Post("http://"+this.miraiAddr+"/verify", "application/json; charset=utf-8", bytes.NewReader(data))
 	if err!=nil{
 		return err
 	}
@@ -84,26 +85,26 @@ func (this *session) Verify(botqq uint) error  {
 
 	err = GetErrByCode(uniResp.Code)
 	if err==nil{
-		this.botqq=botqq
+		this.qq=botqq
 	}
 	return err
 }
 
 //释放这个Session
 func (this *session) Release() error{
-	if this.botqq==0{
+	if this.qq==0{
 		return errors.New("会话未与bot绑定")
 	}
 	req:=SessionReq{
 		SessionKey: this.sessionKey,
-		BotQQ:      this.botqq,
+		BotQQ:      this.qq,
 	}
 	data,err:=jsoniter.Marshal(&req)
 	if err!=nil{
 		return err
 	}
 
-	resp, err := this.client.Post("http://"+this.miraiAddr+"/release", "application/json; charset=utf-8", bytes.NewReader(data))
+	resp, err := http.DefaultClient.Post("http://"+this.miraiAddr+"/release", "application/json; charset=utf-8", bytes.NewReader(data))
 	if err!=nil{
 		return err
 	}

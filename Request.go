@@ -10,3 +10,22 @@ type SessionReq struct {
 	SessionKey string `json:"sessionKey"`
 	BotQQ uint `json:"qq"`
 }
+
+type RequestSendFriendMessage struct {
+	SessionKey string `json:"sessionKey"`
+	Target uint `json:"target"`
+	MessageChain []Message `json:"messageChain"`
+}
+
+type RequestSendTempMessage struct {
+	SessionKey string `json:"sessionKey"`
+	QQ uint `json:"qq"`
+	Group uint `json:"group"`
+	MessageChain []Message `json:"messageChain"`
+}
+
+type RequestSendGroupMessage struct {
+	SessionKey string `json:"sessionKey"`
+	Target uint `json:"target"`
+	MessageChain []Message `json:"messageChain"`
+}

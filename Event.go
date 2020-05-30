@@ -1,6 +1,9 @@
 package miraiGo
 
 const (
+	EventReceiveFriendMessage            = "FriendMessage"
+	EventReceiveGroupMessage             = "GroupMessage"
+	EventReceiveTempMessage              = "TempMessage"
 	EventBotOnline                       = "BotOnlineEvent"
 	EventBotOfflineActive                = "BotOfflineEventActive"
 	EventBotOfflineForce                 = "BotOfflineEventForce"
@@ -31,3 +34,10 @@ const (
 	EventNewFriendRequest                = "NewFriendRequestEvent"
 	EventMemberJoinRequest               = "MemberJoinRequestEvent"
 )
+
+type Event struct {
+	Type string `json:"type"` //事件类型
+	MessageChain []Message `json:"messageChain"` //(ReceiveMessage)消息链
+	Sender Sender `json:"sender"` //(ReceiveMessage)发送者信息
+	//QQ uint `json:"qq"` //(BotOnline)
+}
