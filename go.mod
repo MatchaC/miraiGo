@@ -1,4 +1,4 @@
-module miraiGo
+module github.com/MatchaC/miraiGo
 
 go 1.14
 
