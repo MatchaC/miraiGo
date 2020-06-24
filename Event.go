@@ -33,11 +33,14 @@ const (
 	EventMemberUnmute                    = "MemberUnmuteEvent"
 	EventNewFriendRequest                = "NewFriendRequestEvent"
 	EventMemberJoinRequest               = "MemberJoinRequestEvent"
+	EventBotInvitedJoinGroupRequest      = "BotInvitedJoinGroupRequestEvent"
 )
 
 type Event struct {
 	Type string `json:"type"` //事件类型
 	MessageChain []Message `json:"messageChain"` //(ReceiveMessage)消息链
 	Sender Sender `json:"sender"` //(ReceiveMessage)发送者信息
-	//QQ uint `json:"qq"` //(BotOnline)
+	EventId uint64 `json:"eventId"` //事件ID
+	FromId uint64 `json:"fromId"` //操作人
+	GroupId uint64 `json:"groupId"` //群号
 }

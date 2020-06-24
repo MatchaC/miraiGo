@@ -178,3 +178,43 @@ func (this *Session) ReCall(req RequestReCall) error{
 	err = GetErrByCode(uniResp.Code)
 	return err
 }
+
+func (this *Session) HandleEventNewFriendRequest(req ResponseEventInvited) error{
+	if this.qq==0{
+		return errors.New("会话未与bot绑定")
+	}
+	req.SessionKey=this.sessionKey
+
+	data,err:=jsoniter.Marshal(&req)
+	if err!=nil{
+		return err
+	}
+
+	resp, err := http.DefaultClient.Post("http://"+this.miraiAddr+"/resp/newFriendRequestEvent", "application/json; charset=utf-8", bytes.NewReader(data))
+	if err!=nil{
+		return err
+	}
+	defer resp.Body.Close()
+
+	return nil
+}
+
+func (this *Session) HandleEventBotInvitedJoinGroupRequest(req ResponseEventInvited) error{
+	if this.qq==0{
+		return errors.New("会话未与bot绑定")
+	}
+	req.SessionKey=this.sessionKey
+
+	data,err:=jsoniter.Marshal(&req)
+	if err!=nil{
+		return err
+	}
+
+	resp, err := http.DefaultClient.Post("http://"+this.miraiAddr+"/resp/memberJoinRequestEvent", "application/json; charset=utf-8", bytes.NewReader(data))
+	if err!=nil{
+		return err
+	}
+	defer resp.Body.Close()
+
+	return nil
+}

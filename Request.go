@@ -45,3 +45,13 @@ type RequestReCall struct {
 	SessionKey string `json:"sessionKey"`
 	Target uint `json:"target"`
 }
+
+
+type ResponseEventInvited struct {
+	SessionKey string `json:"sessionKey"`
+	EventId uint64 `json:"eventId"`
+	FromId uint64 `json:"fromId"`
+	GroupId uint64 `json:"groupId"`
+	Operate uint `json:"operate"` //0接收 1拒绝
+	Message string `json:"message"`
+}
