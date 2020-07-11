@@ -9,7 +9,7 @@ import (
 func TestAbout(t *testing.T) {
 	res, err := origin.About(MiraiHttpApiAddr)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Error:", err)
 		return
 	}
 	fmt.Printf("Result: %+v\n", res)
