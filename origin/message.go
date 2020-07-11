@@ -7,7 +7,7 @@ type RespSendMessage struct {
 }
 
 type Message interface {
-	JustMark()
+	JustMark() //这只是一个标记，防止用户乱传类型
 }
 
 type MessagePlain struct {
