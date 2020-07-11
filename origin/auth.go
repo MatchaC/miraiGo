@@ -8,8 +8,8 @@ import (
 )
 
 type RespAuth struct {
-	Code    int    `json:"code"`
-	Session string `json:"session"`
+	Code       int    `json:"code"`
+	SessionKey string `json:"session"`
 }
 
 func Auth(remoteAddr string, authKey string) (RespAuth, error) {
