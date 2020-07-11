@@ -14,8 +14,8 @@ type RespAbout struct {
 	} `json:"data"`
 }
 
-func About(addr string) (RespAbout, error) {
-	resp, err := http.DefaultClient.Get("http://" + addr + "/about")
+func About(remoteAddr string) (RespAbout, error) {
+	resp, err := http.DefaultClient.Get("http://" + remoteAddr + "/about")
 	if err != nil {
 		return RespAbout{}, err
 	}
