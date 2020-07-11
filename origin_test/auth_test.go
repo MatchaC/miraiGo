@@ -7,9 +7,9 @@ import (
 )
 
 func TestAuth(t *testing.T) {
-	res, err := origin.Auth(MiraiHttpApiAddr, "1qaz2wsx")
+	res, err := origin.Auth(MiraiHttpApiAddr, AuthKey)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Error:", err)
 		return
 	}
 	fmt.Printf("Result: %+v\n", res)
